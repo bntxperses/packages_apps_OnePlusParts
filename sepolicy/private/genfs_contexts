@@ -1,1 +1,12 @@
 genfscon sysfs /class/oplus_chg/battery/slow_chg_en    u:object_r:sysfs_slow_chg:s0
+
+# Display Features (HBM & DC Dimming)
+genfscon sysfs /class/drm/card0-DSI-1/hbm u:object_r:sysfs_oneplusparts:s0
+genfscon sysfs /class/drm/card0-DSI-1/dimlayer_bl_en u:object_r:sysfs_oneplusparts:s0
+
+# Alert Slider
+genfscon sysfs /devices/platform/soc/soc:tri_state_key u:object_r:sysfs_oneplusparts:s0
+
+# Battery & Charging (Step Charging / Bypass)
+genfscon sysfs /class/power_supply/battery/step_charging_enabled u:object_r:sysfs_oneplusparts:s0
+genfscon sysfs /class/power_supply/usb/fastcharge u:object_r:sysfs_oneplusparts:s0

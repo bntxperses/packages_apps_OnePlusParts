@@ -1,1 +1,4 @@
 allow system_app sysfs_slow_chg:file rw_file_perms;
+
+allow system_app sysfs_oneplusparts:dir search;
+allow system_app sysfs_oneplusparts:file rw_file_perms;
