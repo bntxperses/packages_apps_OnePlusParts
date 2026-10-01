@@ -24,7 +24,7 @@ class BypassChargingFragment : SettingsBasePreferenceFragment(),
         sliderPref = findPreference("bypass_charging_slider")!!
 
         sliderPref.min = 0
-        sliderPref.max = 2
+        sliderPref.max = 1
         sliderPref.sliderIncrement = 1
         sliderPref.setTickVisible(true)
         sliderPref.setHapticFeedbackMode(SliderPreference.HAPTIC_FEEDBACK_MODE_ON_TICKS)
@@ -38,7 +38,7 @@ class BypassChargingFragment : SettingsBasePreferenceFragment(),
 
     override fun onPreferenceChange(preference: Preference, newValue: Any?): Boolean {
         if (preference.key == "bypass_charging_slider") {
-            val mode = (newValue as Int).coerceIn(0, 2)
+            val mode = (newValue as Int).coerceIn(0, 1)
             val success = BypassChargingUtils.setMode(requireContext(), mode)
             if (success) {
                 updateStatusText(mode)
@@ -52,8 +52,6 @@ class BypassChargingFragment : SettingsBasePreferenceFragment(),
         val (titleRes, descRes) = when (mode) {
             BypassChargingUtils.MODE_STANDARD ->
                 Pair(R.string.bypass_charging_mode_1_title, R.string.bypass_charging_mode_1_desc)
-            BypassChargingUtils.MODE_GAMING ->
-                Pair(R.string.bypass_charging_mode_2_title, R.string.bypass_charging_mode_2_desc)
             else ->
                 Pair(R.string.bypass_charging_mode_0_title, R.string.bypass_charging_mode_0_desc)
         }

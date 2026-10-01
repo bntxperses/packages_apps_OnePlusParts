@@ -20,10 +20,6 @@ class BypassChargingTileService : TileService() {
                     tile.state = Tile.STATE_ACTIVE
                     tile.subtitle = getString(R.string.bypass_charging_mode_1_title)
                 }
-                BypassChargingUtils.MODE_GAMING -> {
-                    tile.state = Tile.STATE_ACTIVE
-                    tile.subtitle = getString(R.string.bypass_charging_mode_2_title)
-                }
                 else -> {
                     tile.state = Tile.STATE_INACTIVE
                     tile.subtitle = getString(R.string.bypass_charging_mode_0_title)
@@ -41,8 +37,8 @@ class BypassChargingTileService : TileService() {
     override fun onClick() {
         super.onClick()
         val currentMode = BypassChargingUtils.getMode(this)
-        // Cycle: Normal (0) -> Standard (1) -> Gaming (2) -> Normal (0)
-        val nextMode = (currentMode + 1) % 3
+        // Cycle: Normal (0) -> Standard (1)
+        val nextMode = (currentMode + 1) % 2
         BypassChargingUtils.setMode(this, nextMode)
         updateUI(nextMode)
     }

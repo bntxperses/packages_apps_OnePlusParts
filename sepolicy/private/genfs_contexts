@@ -10,3 +10,4 @@ genfscon sysfs /devices/platform/soc/soc:tri_state_key u:object_r:sysfs_oneplusp
 # Battery & Charging (Step Charging / Bypass)
 genfscon sysfs /class/power_supply/battery/step_charging_enabled u:object_r:sysfs_oneplusparts:s0
 genfscon sysfs /class/power_supply/usb/fastcharge u:object_r:sysfs_oneplusparts:s0
+genfscon sysfs /class/oplus_chg/battery/mmi_charging_enable u:object_r:sysfs_oplus_display:s0

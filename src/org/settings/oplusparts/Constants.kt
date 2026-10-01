@@ -12,7 +12,7 @@ const val PREF_HBM_KEY = "hbm_enable"
 const val HBM_NODE = "/sys/kernel/oplus_display/hbm"
 
 const val PREF_BYPASS_CHARGING_MODE = "bypass_charging_mode"
-const val BYPASS_CHARGING_NODE = "/sys/class/power_supply/battery/input_suspend"
+const val BYPASS_CHARGING_NODE = "/sys/class/oplus_chg/battery/mmi_charging_enable"
 
 const val PREF_GENTLE_CHARGING_KEY = "gentle_charging_enable"
 const val PREF_GENTLE_CHARGING_WATT_KEY = "gentle_charging_watt"

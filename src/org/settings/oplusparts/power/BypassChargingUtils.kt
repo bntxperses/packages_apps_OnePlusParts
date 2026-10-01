@@ -26,16 +26,21 @@ object BypassChargingUtils {
 
     fun getHardwareMode(): Int {
         val value = FileUtils.readOneLine(BYPASS_CHARGING_NODE)?.trim() ?: return MODE_NORMAL
-        return value.toIntOrNull() ?: MODE_NORMAL
+        // Kernel "1" = Normal (0), Kernel "0" = Bypass (1)
+        return if (value == "1") MODE_NORMAL else MODE_STANDARD
     }
 
     fun setMode(context: Context, mode: Int): Boolean {
-        val targetMode = mode.coerceIn(MODE_NORMAL, MODE_GAMING)
-        val success = FileUtils.writeLine(BYPASS_CHARGING_NODE, targetMode.toString())
+        val targetMode = mode.coerceIn(MODE_NORMAL, MODE_STANDARD)
+        
+        // UI 0 = Kernel 1, UI 1 = Kernel 0
+        val kernelValue = if (targetMode == MODE_NORMAL) "1" else "0"
+        
+        val success = FileUtils.writeLine(BYPASS_CHARGING_NODE, kernelValue)
         if (success) {
-            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-            prefs.edit().putInt(PREF_BYPASS_CHARGING_MODE, targetMode).apply()
-            BypassChargingTileService.updateTile(context)
+            PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putInt(PREF_BYPASS_CHARGING_MODE, targetMode)
+                .apply()
         }
         return success
     }
